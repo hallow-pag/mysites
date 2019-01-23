@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>昏鸦的个人网站</title>
+
+    <link rel="stylesheet" href="/static/boot3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/boot3/js/bootstrap.min.js">
+    {#    <link rel="stylesheet" href="/static/home.css">#}
+    <script src="/static/jquery12.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="/favicon.ico" />
+     <link rel="bookmark" href="/favicon.ico" />
+</head>
+
+<body>
+<div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'home' %}">我的个人网站</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                {% block boy %}
+                    <li class="active"><a href="{% url 'home' %}">首页 <span class="sr-only"></span></a></li>
+                    <li><a href="{% url 'list' %}">博客列表</a></li>
+                    <li><a href="{% url 'game' %}">打发时间</a></li>
+                    <li><a href="{% url 'move' %}" target="_blank">影片</a></li>
+                    <li><a href="{% url 'bar' %}" >可视化</a></li>
+                {% endblock %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% block body %}
+
+{% endblock %}
+
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container container-fluid">
+
+        <p class="text-center"><span class="glyphicon glyphicon-user"  ></span> 昏鸦
+            <span class="glyphicon glyphicon-envelope"  ></span>yongkunnsu@outlook.com
+
+             <span class="glyphicon glyphicon-paperclip"  ></span>  <a href="{% url 'about' %}">关于
+        </a>
+        </p>
+
+
+
+    </div>
+</div>
+
+</body>
+
+</html>

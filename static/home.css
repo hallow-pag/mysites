@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+     text-decoration: none;
+}
+
+div.ds {
+    background-color: #daf0fe;
+    border-bottom: #e2ddc5;
+}
+
+div.ds a {
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+}
+
+a.der {
+    display: inline-block;
+    font-size: 120%;
+}

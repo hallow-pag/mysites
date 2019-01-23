@@ -1,0 +1,78 @@
+{% extends 'all_onr.html' %}
+<!DOCTYPE html>
+<html lang="en">
+</head>
+<title>Title</title>
+<body>
+</head>
+{% block boy %}
+    <li><a href="{% url 'home' %}">首页</a></li>
+    <li class="active"><a href="{% url 'list' %}">博客列表 <span class="sr-only"></span></a></li>
+    <li><a href="{% url 'game' %}">打发时间</a></li>
+    <li><a href="{% url 'move' %}" target="_blank">影片</a></li>
+     <li><a href="{% url 'bar' %}" >可视化</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-9">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-grain"></span> 文章
+                            （一共有{{ blogs|length }}篇）</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            {% for i in blogs %}
+                                <h3><a href="{{ i.pk }}">{{ i.title }}  </a></h3>
+                                <p>
+                                    发表时间：{{ i.created_time|date:'Y-n-d H:n:s' }}{#    date:'Y-n-d H:n:s' 时间显示央视#}
+                                </p>
+                                <p>
+                                    作者：{{ i.author }}
+                                </p>
+                                <p>{{ i.content|striptags|truncatechars:30 }}</p>{#    truncatechars装饰器 显示前30个字#}
+                                <p>分类：<a href="{% url 'blog_type_pk' i.blog_type.pk %}">{{ i.blog_type }}</a></p>
+
+                                {% if i.pk != blogs|length %}
+                                    <hr>
+                                {% endif %}
+
+
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="hidden-xs col-xs-0 col-sm-4 col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">分类</h3>
+                    </div>
+                    <div class="panel-body">
+                        {% for i in blog_ty %}
+                            <p><a href="{% url 'blog_type_pk' i.pk %}">{{ i }}</a></p>
+                            {% empty %}
+                            <p>暂无文章</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <hr>
+
+
+
+{% endblock %}
+</body>
+</html>

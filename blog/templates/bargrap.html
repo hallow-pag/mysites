@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" href="/static/boot3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/boot3/js/bootstrap.min.js">
+    <script src="/static/jquery12.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <title>动态排名数据可视化 ver1.3 By Jannchie</title>
+</head>
+<body>
+<div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'home' %}">我的个人网站</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'bar' %}">首页</a></li>
+                <li><a href="{% url 'list' %}">博客列表</a></li>
+                <li><a href="{% url 'game' %}">打发时间</a></li>
+                <li><a href="{% url 'move' %}" target="_blank">影片</a></li>
+                <li class="active"><a href="{% url 'home' %}">可视化 <span class="sr-only"></span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<button type="button" class="btn btn-info" style="position:fixed;top:80px;right:80px;"><a href="/media/upload/2019/01/20/example.csv">样例下载</a></button>
+
+
+
+<center>
+    <input type="file" id="inputfile" name="fileContent">
+    <svg width="1900" height="1060"></svg>
+    <script src="/static/config.js"></script>
+    <script src="/static/visual.js"></script>
+    <link rel="stylesheet" href="/static/stylesheet.css">
+</center>
+
+<br>
+<br>
+<br>
+<div class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container container-fluid">
+        <p class="text-center"><span class="glyphicon glyphicon-user"></span> 昏鸦
+            <span class="glyphicon glyphicon-envelope"></span>yongkunnsu@outlook.com
+            <span class="glyphicon glyphicon-paperclip"></span> <a href="{% url 'about' %}">关于
+            </a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

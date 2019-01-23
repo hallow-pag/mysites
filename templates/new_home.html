@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animated color cards</title>
+    <script>
+        if (location.pathname.match(/fullcpgrid/i)) {
+            document.documentElement.classList.add('grid-view');
+            setTimeout(() => {
+                document.querySelector('.block.y').classList.add('fake-hover');
+            }, 1750);
+            setTimeout(() => {
+                document.querySelector('.block.y').dispatchEvent(new Event('click'));
+            }, 2250);
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="/static/new_home.css">
+</head>
+<body>
+<h3 style="position: relative; left: 39%;padding-top: 30px">这里有三个盒子，选一个吧！</h3>
+<div class="block-wrap" style="position: relative;left: -10%;">
+
+    <div class="block-col">
+        <div class="block block--transition r">
+            <div class="block-content">
+                <div class="block-content__header">
+                    <h2 class="block-content__header__text">Read</h2>
+                </div>
+                <p class="block-content__body">我送你一颗忘忧草，再为你逮只幸福鸟，当幸福鸟含着忘忧草像你飞来时，请把
+                    你的心整理好，那是我对你最好的祝福，只希望你能快乐到老幸福到老！</p>
+                <div class="block-content__button">
+                   <a href="{% url 'home' %}"  style="text-decoration: none ; color:#daf0fe">Coming</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-col">
+        <div class="block block--transition  b">
+            <div class="block-content">
+                <div class="block-content__header">
+                    <h2 class="block-content__header__text">Blue</h2>
+                </div>
+                <p class="block-content__body">愿你三冬暖，愿你春不寒，愿你天黑有灯，下雨有伞，愿你一路上，有良人相伴
+                    。愿你所有快乐，无需假装。愿你此生尽兴，赤诚善良。愿时光能缓，愿故人不散</p>
+                <div class="block-content__button">
+                  <a href="{% url 'home' %}"  style="text-decoration: none ; color:#daf0fe">Coming</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-col">
+        <div class="block block--transition y">
+            <div class="block-content">
+                <div class="block-content__header">
+                    <h2 class="block-content__header__text">Yellow</h2>
+                </div>
+                <p class="block-content__body">做你想做的梦，去你想去的地方，成为你想成为的人吧，因为你只有一次生命，
+                    一个机会去做所有那些你想做的事。</p>
+                <div class="block-content__button">
+                    <a href="{% url 'home' %}"  style="text-decoration: none ; color:#daf0fe">Coming</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/new-home.js"></script>
+</body>
+
+</html>

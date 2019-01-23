@@ -1,0 +1,56 @@
+{% extends 'all_onr.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body %}
+    <div >
+    <h1 >{{ blog.title }}</h1>
+    <p>作者：{{ blog.author }}</p>
+    <p>发布时间：{{ blog.created_time }}</p>
+    </div>
+
+    <hr>
+
+    <div class="container" >
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <div class="panel-body">
+                    <ul>
+                        <p>{{ blog.content|safe }}</p>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="hidden-xs col-xs-0 col-sm-4 col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">相关</h3>
+                    </div>
+                    <div class="panel-body">
+                         {% if user.is_authenticated %}
+        已登录
+    {% else %}
+
+        <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+            <input type="text" name="username">
+            <input type="password" name="password">
+            <input type="submit" value="登录">
+        </form>
+
+    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</div>
+{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>昏鸦的个人网站</title>
+
+
+
+    <style>
+        html,
+        body {
+            overflow: hidden;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
+            color: #333;
+        }
+
+        #wrapper {
+            position: absolute;
+            left: 0;
+            width: 320px;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            margin-left: -160px;
+            margin-top: -160px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        h1 {
+            font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 30px;
+            letter-spacing: 9px;
+            text-transform: uppercase;
+            margin: 12px 0;
+            left: 4px;
+        }
+
+        h2 {
+            color: #999;
+            font-weight: normal;
+            font-size: 15px;
+            letter-spacing: .12em;
+            margin-bottom: 30px;
+            left: 3px;
+        }
+
+        h1,
+        h2 {
+            position: relative;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 2em;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        a {
+            color: #999;
+            text-decoration: none;
+            transition: color .2s ease;
+        }
+
+        a:hover {
+            color: #f33;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <h3>在寒假集训一周后</h3>
+        <h3>昏鸦的个人网站到今天就正式上线</h3>
+        <p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该网站基于Python-Django框架，CSS-Bootsrap框架构成。
+
+由于不太会HTML和CSS所以网页设计的足够简洁，
+
+对手机的兼容性也不太好，建议大家用平板或是电脑访问。
+
+喜欢爬虫的盆友就放过这个网站吧，他还小。
+
+元素也不够丰富。等我一边学习一边完善。
+
+在接下来的一段时间里我会对该网站持续的升级。
+
+比如，加个俩小游戏，加俩实际应用。
+
+分享一些有关计算机&网络的教程，丰富一下博客内容。
+
+www.hunya.fun 这个域名正在工信局申请备案。
+
+过不了多久大家可以通过这个较短的域名访问我的网站。
+        </p>
+    </div>
+    <div aria-label="...">
+  <ul class="pager">
+   <a href="{% url 'home' %}"><span aria-hidden="true">&larr;</span> 返回</a>
+  </ul>
+</div>
+    <canvas></canvas>
+    <script>
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault()
+        })
+        var c = document.getElementsByTagName('canvas')[0],
+            x = c.getContext('2d'),
+            pr = window.devicePixelRatio || 1,
+            w = window.innerWidth,
+            h = window.innerHeight,
+            f = 90,
+            q,
+            m = Math,
+            r = 0,
+            u = m.PI * 2,
+            v = m.cos,
+            z = m.random
+        c.width = w * pr
+        c.height = h * pr
+        x.scale(pr, pr)
+        x.globalAlpha = 0.6
+        function i() {
+            x.clearRect(0, 0, w, h)
+            q = [{ x: 0, y: h * .7 + f }, { x: 0, y: h * .7 - f }]
+            while (q[1].x < w + f) d(q[0], q[1])
+        }
+        function d(i, j) {
+            x.beginPath()
+            x.moveTo(i.x, i.y)
+            x.lineTo(j.x, j.y)
+            var k = j.x + (z() * 2 - 0.25) * f,
+                n = y(j.y)
+            x.lineTo(k, n)
+            x.closePath()
+            r -= u / -50
+            x.fillStyle = '#' + (v(r) * 127 + 128 << 16 | v(r + u / 3) * 127 + 128 << 8 | v(r + u / 3 * 2) * 127 + 128).toString(16)
+            x.fill()
+            q[0] = q[1]
+            q[1] = { x: k, y: n }
+        }
+        function y(p) {
+            var t = p + (z() * 2 - 1.1) * f
+            return (t > h || t < 0) ? y(p) : t
+        }
+        document.onclick = i
+        document.ontouchend = i
+        i()
+    </script>
+</body>
+
+</html>

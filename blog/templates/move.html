@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+	    <meta charset="UTF-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title>昏鸦的个人网站</title>
+		<style>
+            body, input, ul, li{
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				font: 12px arial;
+			}
+			input {
+				outline: none;
+				border: none;
+			}
+			.search {
+			    width: 640px;
+			    margin: 0 auto;
+
+			}
+			.search-logo {
+				margin-bottom: 30px;
+				text-align: center;
+			}
+			/*整个搜索框*/
+			.searchBar {
+				width: 640px;
+				height: 38px;
+			}
+			/*搜索文本*/
+			.searchTxt {
+				float: left;
+				border: 1px solid #3385ff;
+				width: 540px;
+				height: 36px;
+			}
+			.searchTxt input{
+				padding-left: 5px;
+				width: 540px;
+				height: 36px;
+			}
+			/*搜索按钮*/
+			.searchBtn {
+			    float: right;
+			    width: 98px;
+			    height: 38px;
+			}
+			.searchBtn input{
+				letter-spacing: 1px;
+				font-size: 14px;
+				color: #fff;
+			    width: 98px;
+			    height: 38px;
+				background: #3385ff;
+				cursor: pointer;
+			}
+			.search p {
+				margin-top: 50px;
+				text-align: center;
+				color: #c9c9c9;
+				font-size: 12px;
+			}
+			p a{
+				text-decoration: underline;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="search">
+			<div class="search-logo">
+                 <p><img alt="" src="/media/upload/2019/01/20/1.jpg" style="height:164px; width:265px" /></p>
+{#				<img src="1.png" width="521px" height="261px" >#}
+			</div>
+			<div class="searchBar">
+				<form action={% url 'move' %} method='post'>
+                     {% csrf_token %}
+					<div class="searchTxt" id="searchTxt">
+                        <input type="text" name="searchInput">
+				    </div>
+                    <div class="searchBtn">
+					<input type="submit" name="进入">
+                    </div>
+				</form>
+                <p>&nbsp;</p>
+    <p>将影片的地址填入括号，点击提交</p>
+                 <p>支持腾讯，爱奇艺</p>
+			</div>
+		</div>
+
+
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript">
+            $('#searchInput').bind('keyup',function() {
+				$('#search-suggest').show().css({
+					top:$('#searchTxt').offset().top + $('#searchTxt').height(),
+                    left:$('#searchTxt').offset().left,
+                    position:'absolute'
+				});
+			})
+			$(document).bind('click',function(){
+				$('#search-suggest').hide();
+			})
+		</script>
+
+	</body>
+</html>

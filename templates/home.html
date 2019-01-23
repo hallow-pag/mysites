@@ -1,0 +1,25 @@
+{% extends 'all_onr.html' %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+        {% block body %}
+            <div class="container">
+<div class="jumbotron">
+        <h2>终于等到你了</h2>
+        <p>随便看</p>
+        <p>欢迎来到我的个人网站</p>
+      <p>网站会持续完善，更多模块和功能敬请期待......</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="{% url 'list' %}" role="button">Welcoming &raquo;</a>
+        </p>
+      </div>
+</div>
+{#<h3><p class="text-center">欢迎来到我的个人网站，随便看...</p></h3>#}
+   {% endblock %}
+<style>
+</style>
+</body>
+</html>

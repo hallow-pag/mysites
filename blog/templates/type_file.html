@@ -1,0 +1,23 @@
+{% extends 'all_onr.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ blog_type }}</title>
+</head>
+<body>
+{% block body %}
+    {% for i in b %}
+      <p>
+        <h3><a href="http://localhost:8000/list/{{ i.pk }}">{{ i.title }}</a></h3>
+        <p>作者：{{ i.author }}&nbsp;&nbsp;发布时间：{{ i.created_time }}</p>
+        </p>
+        <hr>
+    {% empty %}
+<p> &nbsp;</p>
+        <p class="text-center">暂无文章,敬请期待......</p>
+    {% endfor %}
+{% endblock %}
+
+</body>
+</html>
