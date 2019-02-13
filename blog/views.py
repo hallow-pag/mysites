@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response, get_object_or_404,redirect,render
 from .models import Blog, BlogType
 from django.contrib.auth import authenticate, login
+from django.core.paginator import Paginator
 def home(req):
     return render_to_response('home.html')
 def newhome(req):
@@ -24,8 +25,14 @@ def about(req):
     return render_to_response('about.html')
 
 def blog_list(request):
+    blog_all_list = Blog.objects.all()
+    paginator = Paginator(blog_all_list,10)
+    page_num = request.GET.get('page',1) #得到page参数，默认为1
+    page_of_blogs = paginator.get_page(page_num) #得到page 如果错误自动到第1页
+
+
     context = {}
-    context['blogs'] = Blog.objects.all()
+    context['page_of_blogs'] = page_of_blogs
     context['blog_ty'] = BlogType.objects.all()
     return render_to_response('list.html', context)
 

@@ -10,7 +10,7 @@
     <li class="active"><a href="{% url 'list' %}">博客列表 <span class="sr-only"></span></a></li>
     <li><a href="{% url 'game' %}">打发时间</a></li>
     <li><a href="{% url 'move' %}" target="_blank">影片</a></li>
-     <li><a href="{% url 'bar' %}" >可视化</a></li>
+    <li><a href="{% url 'bar' %}">可视化</a></li>
 {% endblock %}
 
 {% block body %}
@@ -21,11 +21,11 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title"><span class="glyphicon glyphicon-grain"></span> 文章
-                            （一共有{{ blogs|length }}篇）</h3>
+                            （一共有{{ page_of_blogs.paginator.count|length }}篇）</h3>
                     </div>
                     <div class="panel-body">
                         <ul>
-                            {% for i in blogs %}
+                            {% for i in page_of_blogs.object_list %}
                                 <h3><a href="{{ i.pk }}">{{ i.title }}  </a></h3>
                                 <p>
                                     发表时间：{{ i.created_time|date:'Y-n-d H:n:s' }}{#    date:'Y-n-d H:n:s' 时间显示央视#}
@@ -46,6 +46,38 @@
                     </div>
 
                 </div>
+                <div>
+
+
+                    <ul class="pagination">
+                        <li>
+                            {% if page_of_blogs.has_previous %}
+                                <a href="?page={{ page_of_blogs.previous_page_number }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            {% else %}
+                                <span aria-hidden="true">&laquo;</span>
+                            {% endif %}
+                        </li>
+
+                        {% for pa_num in page_of_blogs.paginator.page_range %}
+                            <li><a href="?page={{ pa_num }}">{{ pa_num }}</a></li>
+                        {% endfor %}
+
+                        <li>
+                            {% if page_of_blogs.has_next %}
+                                <a href="?page={{ page_of_blogs.next_page_number }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            {% else %}
+                                <span aria-hidden="true">&raquo;</span>
+                            {% endif %}
+
+                        </li>
+                    </ul>
+
+                    <p>&nbsp;</p>
+                </div>
             </div>
             <div class="hidden-xs col-xs-0 col-sm-4 col-md-3">
                 <div class="panel panel-default">
@@ -55,7 +87,7 @@
                     <div class="panel-body">
                         {% for i in blog_ty %}
                             <p><a href="{% url 'blog_type_pk' i.pk %}">{{ i }}</a></p>
-                            {% empty %}
+                        {% empty %}
                             <p>暂无文章</p>
                         {% endfor %}
                     </div>
