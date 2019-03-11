@@ -16,6 +16,7 @@ class Blog(models.Model):
     content = RichTextUploadingField()
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True)
+    read_num = models.IntegerField(default=0)
     last_updated_time = models.DateTimeField(auto_now=True)
     
     def __str__(self):

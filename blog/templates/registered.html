@@ -1,0 +1,103 @@
+{% extends 'all_onr.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ er }}</title>
+</head>
+<body>
+{% block boy %}
+    <li><a href="{% url 'home' %}">首页 </a></li>
+    <li><a href="{% url 'list' %}">博客列表</a></li>
+    <li><a href="{% url 'game' %}">打发时间</a></li>
+    <li><a href="{% url 'move' %}" target="_blank">影片</a></li>
+    <li><a href="{% url 'bar' %}">可视化</a></li>
+ </ul>
+                    <ul class="nav navbar-nav navbar-right">
+    <li class="active" style="margin-left: 25em;"><a href="{% url 'login' %}">登录/注册 <span class="sr-only"></span></a>
+    </li>
+    {#                    <li style="margin-left: 25em;"><a href="{% url 'login' %}">登录/注册</a></li>#}
+{% endblock %}
+
+
+{% block  body %}
+
+    {% if user.is_authenticated %}
+        已登录
+    {% else %}
+        <div class="row">
+            <div class="col-xs-1 col-sm-3  col-md-4 col-lg-4">
+            </div>
+            <div class="col-xs-10 col-sm-6 col-md-4 col-lg-4" style="margin-top: 3em;">
+                <form action="" class="form-horizontal" method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">User</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" placeholder="User">
+                            <p7 style="color: red">{{ er_user }}</p7>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" name="emil" placeholder="Email">
+                            <p7 style="color: red">{{ er_emil }}</p7>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Password &nbsp;</label>
+                        {#                <label for="inputPassword3" class="col-sm-2 control-label">密码</label>#}
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" name="password" placeholder="Password">
+                            <p7 style="color: red">{{ er_password }}</p7>
+                            <p7 style="color: red">{{ er_passwords }}</p7>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Password &nbsp;</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" name="passwords" placeholder="Password">
+                            <p7 style="color: red">{{ er }}</p7>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">注册</button>
+                            {#                    <input type="submit" class="btn btn-default" value="登录">#}
+                        </div>
+                    </div>
+                </form>
+                {#                <form action="" method="POST">#}
+                {#                    {% csrf_token %}#}
+                {#                    <input type="text" name="username">#}
+                {#                    <input type="password" name="password">#}
+                {#                    <input type="submit" value="登录">#}
+                {#                 <p style="color: red;margin-top: 5px">{{ er }}</p>#}
+                {#                </form>#}
+            </div>
+            <div class="col-xs-1 col-sm-3  col-md-4 col-lg-4">
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endblock %}
+{% block low_bar %}
+    <div class="row-o" style="background-color: #a1a1a1;margin-top:160px;">
+
+{% endblock %}
+</body>
+</html>

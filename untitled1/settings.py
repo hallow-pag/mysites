@@ -25,7 +25,7 @@ SECRET_KEY = 'atrilr8*g9rg3s)-p^m^0!fqflar&%f%+hhpb=httne9y6@qb1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.hunya.fun','hunya.fun','119.23.106.150']
 
 
 # Application definition
@@ -121,7 +121,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'start_csj')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [

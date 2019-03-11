@@ -5,18 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="icon" href="/media/upload/2019/01/20/111.ico" type="image/x-icon"/>
+    <link rel="icon" href="/media/upload/2019/01/20/111.ico" type="image/x-icon"/>
     <title>昏鸦的个人网站</title>
 
     <link rel="stylesheet" href="/static/boot3/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/boot3/js/bootstrap.min.js">
+    {% block css_js %}
+    {% endblock %}
     {#    <link rel="stylesheet" href="/static/home.css">#}
     <script src="/static/jquery12.min.js"></script>
     <script src="/static/bootstrap.min.js"></script>
-
 </head>
 
 <body>
+
 <div class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
 
@@ -33,35 +35,67 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 {% block boy %}
-                    <li class="active"><a href="{% url 'home' %}">首页 <span class="sr-only"></span></a></li>
-                    <li><a href="{% url 'list' %}">博客列表</a></li>
+                    <li><a href="{% url 'list' %}">首页</a></li>
+                    <li class="active"><a href="{% url 'list' %}">博客列表 <span class="sr-only"></span></a></li>
+
                     <li><a href="{% url 'game' %}">打发时间</a></li>
                     <li><a href="{% url 'move' %}" target="_blank">影片</a></li>
-                    <li><a href="{% url 'bar' %}" >可视化</a></li>
+                    <li><a href="{% url 'bar' %}">可视化</a></li>
+                    </ul>
+                    {% if user.is_authenticated %}
+                        <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">个人信息</a>
+                        </li>
+                    {% else %}
+                        <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="{% url 'login' %}?from={{ request.get_full_path }}">登录/注册</a>
+                        </li>
+                    {% endif %}
+
                 {% endblock %}
-            </ul>
+                </ul>
         </div>
     </div>
 </div>
+
 {% block body %}
 
 {% endblock %}
 
-<div class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container container-fluid">
 
-        <p class="text-center"><span class="glyphicon glyphicon-user"  ></span> 昏鸦
-            <span class="glyphicon glyphicon-envelope"  ></span>yongkunnsu@outlook.com
+{% block low_bar %}{#底栏相对高度#}
+    <div class="row-o" style="background-color: #a1a1a1;margin-top: 260px;">
+{% endblock %}
+<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+    <h3 style="margin-left: 1em">联系我</h3>
+    <p style="margin-left: 2em">Email: yongkunnsu@outlook.com</p>
+    {#    <p style="margin-left: 3em">We Come To HUNYA's Website</p>#}
+</div>
+<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+    <h3>其他</h3>
+    <p><a href="{% url 'about' %}" style="text-decoration:none;">关于我们</a></p>
+    <p>
+        <a href="http://www.miitbeian.gov.cn/" style="text-decoration:none;">蜀ICP备19005034&nbsp;
+            <img alt="" src="/media/upload/beiantubiao.png" style="height:20px; width:20px"/></a>
+    </p>
+</div>
+<div class="hidden-xs col-xs-0 col-sm-4 col-md-4 col-lg-4">
+    <h3>关于此网站</h3>
+    <p>编程语言选用的是Python</p>
+    <p>网站框架采用Django</p>
+    <p>CSS框架采用的是Bootstrap</p>
 
-             <span class="glyphicon glyphicon-paperclip"  ></span>  <a href="{% url 'about' %}">关于
-        </a>
-        </p>
-
-
-
-    </div>
 </div>
 
-</body>
 
+<p class="text-center" style="margin-top: 10px;">
+    We Come To HUNYA's Website
+</p>
+</div>
+
+{% block script_extends %}
+{% endblock %}
+</body>
 </html>

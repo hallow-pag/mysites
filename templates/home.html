@@ -2,23 +2,50 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-<title>Title</title>
+    <title>Title</title>
 </head>
 <body>
-        {% block body %}
-            <div class="container">
-<div class="jumbotron">
-        <h2>终于等到你了</h2>
-        <p>随便看</p>
-        <p>欢迎来到我的个人网站</p>
-      <p>网站会持续完善，更多模块和功能敬请期待......</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="{% url 'list' %}" role="button">Welcoming &raquo;</a>
-        </p>
-      </div>
-</div>
-{#<h3><p class="text-center">欢迎来到我的个人网站，随便看...</p></h3>#}
-   {% endblock %}
+
+                {% block boy %}
+
+                    <li class="active"><a href="{% url 'home' %}">首页 <span class="sr-only"></span></a></li>
+                    <li><a href="{% url 'list' %}">博客列表</a></li>
+                    <li><a href="{% url 'game' %}">打发时间</a></li>
+                    <li><a href="{% url 'move' %}" target="_blank">影片</a></li>
+                    <li><a href="{% url 'bar' %}">可视化</a></li>
+                    </ul>
+                     {% if user.is_authenticated %}
+                         <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">个人信息</a>
+                        </li>
+                    {% else %}
+                         <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="{% url 'login' %}?from={{ request.get_full_path }}">登录/注册</a>
+                        </li>
+                    {% endif %}
+
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <h2>终于等到你了</h2>
+            <p>随便看</p>
+            <p>欢迎来到我的个人网站</p>
+            <p>网站会持续完善，更多模块和功能敬请期待......</p>
+            <p>
+                <a class="btn btn-lg btn-primary" href="{% url 'list' %}" role="button">Welcoming &raquo;</a>
+            </p>
+        </div>
+    </div>
+    {#<h3><p class="text-center">欢迎来到我的个人网站，随便看...</p></h3>#}
+{% endblock %}
+                {% block low_bar %}
+
+    <div class="row-o" style="background-color: #a1a1a1;margin-top: 300px;">
+{% endblock %}
 <style>
 </style>
 </body>

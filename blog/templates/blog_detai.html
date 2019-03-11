@@ -1,63 +1,47 @@
 {% extends 'all_onr.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  {% block css_js %}
-     <link rel="stylesheet" href="/static/blog.css">
-{#    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>#}
-{#    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>#}
+{% block css_js %}
+
+    <link rel="stylesheet" href="/static/blog.css">
+    {#    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>#}
+    {#    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>#}
 {% endblock %}
 
-</head>
-<body>
+{# 页面内容 #}
 {% block body %}
-    <div style="margin-left: 20px;margin-top: 1em;">
-        <h1>{{ blog.title }}</h1>
-        <p>作者:{{ blog.author }}&nbsp;
-            发布时间:{{ blog.created_time|date:"Y-m-d H:i:s" }}&nbsp;
-            阅读:{{ blog.read_num }}&nbsp;
-        </p>
-
-    </div>
-
-    <hr>
-
     <div class="container">
-        <div class="row" style="margin-left: 3em;">
-            <div class="col-xs-12 col-sm-8 col-md-9">
-                <div class="panel-body">
-                    <ul>
-                        <p>{{ blog.content|safe }}</p>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="hidden-xs col-xs-0 col-sm-4 col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">相关文章</h3>
-
-                    </div>
-                    <div class="panel-body">
-                        <p>建设中...</p>
-
-                    </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <h3>{{ blog.title }}</h3>
+                <ul class="blog-info-description">
+                    <li>作者：{{ blog.author }}</li>
+                    {#                                        <li>分类：<a href="{% url 'blogs_with_type' blog.blog_type.pk %}">{{ blog.blog_type }}</a></li>#}
+                    <li>发表日期：{{ blog.created_time|date:"Y-m-d H:i:s" }}</li>
+                    <li>阅读({{ blog.read_num }})</li>
+                </ul>
+                <div class="blog-content">{{ blog.content|safe }}</div>
+                <div class="blog-more">
+                    <p>上一篇：
+                        {% if blog_on == NULL %}
+                            没有了
+                        {% else %}
+                            <a href="{{ blog_on.pk }}">{{ blog_on.title }}</a>
+                        {% endif %}
+                    </p>
+                    <p>下一篇：
+                        {% if blog_next == NULL %}
+                            没有了
+                        {% else %}
+                            <a href="{{ blog_next.pk }}">{{ blog_next.title }}</a>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <div>
-        <h3 style="margin-left: 50px;margin-top: 20px"> 评论</h3>
-
-        <hr><br><br>
-
-
-    <hr>
         <div class="row">
-            <div class="col-xs-10 col-sm-9 col-md-9">
-                 {% if user.is_authenticated %}
+            <div class="col-xs-10 col-xs-offset-1">
+                <div class="comment-area">
+                    <h3 class="comment-area-title">提交评论</h3>
+                    {% if user.is_authenticated %}
                         <form id="comment_form" action="{% url 'update_comment' %}" method="POST"
                               style="overflow:hidden">
                             <label>{{ user.username }}，欢迎评论~</label>
@@ -75,17 +59,8 @@
                         <span> or </span>
                         <a class="btn btn-danger" href="{% url 'registered' %}">注册</a>
                     {% endif %}
-{#                {% if user.is_authenticated %}#}
-{#                <textarea class="form-control" rows="3" style="margin-left: 3em;"#}
-{#                          placeholder="欢迎评论......"></textarea>#}
-{#                    {% else %}#}
-{#                    <p style="margin-left: 140px;">#}
-{#                        <a href="{% url 'login' %}?from={{ request.get_full_path }}" style="margin-left: 3em;text-decoration:none;">登录</a>后才能评论哟......#}
-{#                    </p>#}
-{#                    <br> <hr>#}
-{#               {% endif %}#}
-            </div>
-        <div class="comment-area">
+                </div>
+                <div class="comment-area">
                     <h3 class="comment-area-title">评论列表</h3>
                     <div id="comment_list">
                         <div id="comment_list">
@@ -118,42 +93,13 @@
                         </div>
                     </div>
                 </div>
-
-
-
-            <div class="col-xs-2 col-sm-3 col-md-3">
- {% if user.is_authenticated %}
-                    <p>&nbsp;</p>
-                    <button type="button" class="btn btn-default btn-lg active">评论</button>
-                    {#<a href="#" class="button button-glow button-rounded button-raised button-primary" style="margin-left: 4em;">评论</a>#}
-                    {#                    <button href="#" style="margin-left: 4em;">评论</button>#}
-{% endif %}
             </div>
-
         </div>
-
-
     </div>
+{% endblock %}
+{% block low_bar %}
 
-    <div class="blog-more" style="margin-top: 1em;margin-left: 4em;">
-        <p>上一篇:
-            {% if blog_on == NULL %}
-                没有了
-            {% else %}
-                <a href="{{ blog_on.pk }}">{{ blog_on.title }}</a>
-            {% endif %}
-        </p>
-        <p>上一篇:
-            {% if blog_next == NULL %}
-                没有了
-            {% else %}
-                <a href="{{ blog_next.pk }}">{{ blog_next.title }}</a>
-            {% endif %}
-        </p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-    </div>
-
+    <div class="row-o" style="background-color: #a1a1a1;margin-top: 60px;">
 {% endblock %}
 {% block script_extends %}
     <script type="text/javascript">
@@ -214,7 +160,5 @@
         }
     </script>
 {% endblock %}
-</body>
 
-</html>
 
