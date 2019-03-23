@@ -24,7 +24,8 @@ def update_comment(request):
         data['username'] = comment.user.username
         data['comment_time'] = comment.comment_time.strftime('%Y-%m-%d %H:%M:%S')
         data['text'] = comment.text
-        return JsonResponse(data)
+
+        # return redirect(request.GET.get('from', reversed('home')))
     else:
         #return render(request, 'error.html', {'message': comment_form.errors, 'redirect_to': referer})
         data['status'] = 'ERROR'

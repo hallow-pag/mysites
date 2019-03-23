@@ -12,18 +12,29 @@
     <li><a href="{% url 'game' %}">打发时间</a></li>
     <li><a href="{% url 'move' %}" target="_blank">影片</a></li>
     <li><a href="{% url 'bar' %}">可视化</a></li>
+    <li><a href="{% url 'photo' %}">图片转字符</a></li>
     </ul>
-                     {% if user.is_authenticated %}
-                         <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#">个人信息</a>
-                        </li>
-                    {% else %}
-                         <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="{% url 'login' %}?from={{ request.get_full_path }}">登录/注册</a>
-                        </li>
-                    {% endif %}
+    {% if user.is_authenticated %}
+        <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+               aria-haspopup="true"
+               aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li class="text-center"><a href="#">你好{{ user.username }}！</a></li>
+
+                <li role="separator" class="divider"></li>
+                <li class="text-center"><a href="#">注销</a><a href="#">更换账号</a></li>
+            </ul>
+        </li>
+    {% else %}
+        <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="{% url 'login' %}?from={{ request.get_full_path }}">登录/注册</a>
+        </li>
+    {% endif %}
+
 {% endblock %}
 
 
@@ -32,6 +43,9 @@
     {% if user.is_authenticated %}
         <h1 style="margin-left: 10em;margin-top: 5em">已登陆</h1>
     {% else %}
+        <div style="height: 130px">
+
+        </div>
         <div class="row">
             <div class="col-xs-1 col-sm-3  col-md-4 col-lg-4">
             </div>
@@ -66,7 +80,9 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-default">Sign in</button>
-                            <button type="submit" class="btn btn-default" style="margin-left: 3em;"><a href="{% url 'registered' %}" style="text-decoration:none;color: black;"> 注册</a></button>
+                            <button type="submit" class="btn btn-default" style="margin-left: 3em;"><a
+                                    href="{% url 'registered' %}" style="text-decoration:none;color: black;"> 注册</a>
+                            </button>
                             {#                    <input type="submit" class="btn btn-default" value="登录">#}
                         </div>
                     </div>
@@ -89,14 +105,14 @@
 
 {% endblock %}
 {% block low_bar %}
-{% if user.is_authenticated %}
-    <div class="row-o" style="background-color: #a1a1a1;margin-top:270px;">
-{% else %}
+    {% if user.is_authenticated %}
+        <div class="row-o" style="background-color: #a1a1a1;margin-top:770px;">
+    {% else %}
 
-        <div class="row-o" style="background-color: #a1a1a1;margin-top:260px;">
+        <div class="row-o" style="background-color: #a1a1a1;margin-top:760px;">
 
 
-{% endif %}
+    {% endif %}
 {% endblock %}
 </body>
 </html>

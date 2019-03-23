@@ -9,6 +9,7 @@ class CommentForm(forms.Form):
     object_id = forms.IntegerField(widget=forms.HiddenInput)
     text = forms.CharField(widget=CKEditorWidget(config_name='comment_ckeditor'),
                            error_messages={'required': '评论内容不能为空'})
+    text.widget.attrs.update({'margin-left': '10em'})
 
     def __init__(self, *args, **kwargs):
         if 'user' in kwargs:

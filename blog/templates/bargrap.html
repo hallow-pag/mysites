@@ -33,6 +33,7 @@
                 <li><a href="{% url 'game' %}">打发时间</a></li>
                 <li><a href="{% url 'move' %}" target="_blank">影片</a></li>
                 <li class="active"><a href="{% url 'bar' %}">可视化 <span class="sr-only"></span></a></li>
+                <li><a href="{% url 'photo' %}">图片转字符</a></li>
                </ul>
                      {% if user.is_authenticated %}
                          <ul class="nav navbar-nav navbar-right">
@@ -60,30 +61,6 @@
     <script src="/static/visual.js"></script>
     <link rel="stylesheet" href="/static/stylesheet.css">
 </center>
-
-<br>
-<br>
-<br>
-<div class="footer" style="
-            position: fixed;
-            left: 0px;
-            bottom: 0px;
-            width: 100%;
-            height: 70px;
-            background-color: #eee;
-            z-index: 9999;
-">
-
-    <p class="text-center" style="margin-top: 10px">
-We Come To HUNYA's Website |
-        <a href="http://www.miitbeian.gov.cn/">
-    <img alt="" src="/media/upload/beiantubiao.png" style="height:20px; width:20px" />
-    蜀ICP备19005034</a>
-    </p>
- <p class="text-center" style="margin-top: 10px">
-     有意见联系我（yongkunnsu@outlook.com）
-</p>
-</div>
 
 </body>
 </html>

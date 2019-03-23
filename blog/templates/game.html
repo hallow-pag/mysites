@@ -13,6 +13,7 @@
 
         <li><a href="{% url 'move' %}" target="_blank">影片</a></li>
         <li><a href="{% url 'bar' %}">可视化</a></li>
+        <li><a href="{% url 'photo' %}">图片转字符</a></li>
        </ul>
                      {% if user.is_authenticated %}
                          <ul class="nav navbar-nav navbar-right">
@@ -329,6 +330,6 @@
     {% endblock %}
 {% block low_bar %}
 
-    <div class="row-o" style="background-color: #a1a1a1;margin-top: 190px;">
+    <div class="row-o" style="background-color: #a1a1a1;margin-top: 660px;">
 {% endblock %}
 </html>

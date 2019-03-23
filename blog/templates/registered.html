@@ -12,11 +12,12 @@
     <li><a href="{% url 'game' %}">打发时间</a></li>
     <li><a href="{% url 'move' %}" target="_blank">影片</a></li>
     <li><a href="{% url 'bar' %}">可视化</a></li>
+    <li><a href="{% url 'photo' %}">图片转字符</a></li>
  </ul>
-                    <ul class="nav navbar-nav navbar-right">
-    <li class="active" style="margin-left: 25em;"><a href="{% url 'login' %}">登录/注册 <span class="sr-only"></span></a>
-    </li>
-    {#                    <li style="margin-left: 25em;"><a href="{% url 'login' %}">登录/注册</a></li>#}
+                        <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
+                       <li style="margin-left: 25em;"><a href="{% url 'login' %}">登录/注册</a></li>
+                        </ul>
+
 {% endblock %}
 
 
@@ -25,6 +26,9 @@
     {% if user.is_authenticated %}
         已登录
     {% else %}
+        <div style="height: 80px">
+
+        </div>
         <div class="row">
             <div class="col-xs-1 col-sm-3  col-md-4 col-lg-4">
             </div>
@@ -96,7 +100,7 @@
 
 {% endblock %}
 {% block low_bar %}
-    <div class="row-o" style="background-color: #a1a1a1;margin-top:160px;">
+    <div class="row-o" style="background-color: #a1a1a1;margin-top:560px;">
 
 {% endblock %}
 </body>

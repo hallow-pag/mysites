@@ -8,6 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from comment.models import Comment
 from comment.form import CommentForm
 
+
 def home(request):
     return render(request, 'home.html')
 
@@ -80,6 +81,9 @@ def blogs_with_type(request, blog_type_pk):
     return render(request, 'type_file.html', context)
 
 
+'''
+登录
+'''
 def log_in(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -95,6 +99,17 @@ def log_in(request):
     return render(request, 'login.html')
 
 
+'''
+登出
+'''
+def logout(request):
+    del request.POST["username"]  # 删除session
+    render(request, "home.html")
+
+
+'''
+注册
+'''
 def registered(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -121,3 +136,7 @@ def registered(request):
 
 def bar(req):
     return render(req, 'bargrap.html')
+
+
+def photo(req):
+    return render(req, 'photo.html')

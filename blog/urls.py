@@ -15,4 +15,6 @@ urlpatterns = [
     path('registered/', views.registered, name='registered'),
     path('', views.blog_list, name='list'),
     path('bargrap', views.bar, name='bar'),
+    path('photo',views.photo,name='photo'),
+    path('login_out', views.logout, name='login_out'),
     ]
